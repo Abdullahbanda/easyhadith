@@ -34,21 +34,41 @@ let quotes = [
 ];
 
 // 1. SELECT THE ELEMENTS
-// Make sure 'id' matches exactly what is in your HTML <button id="id">
 let qEL = document.getElementById('quote');
-let btn = document.getElementById('id'); 
+let btn = document.getElementById('id');
+let counterEL = document.getElementById('counter');
+let progressBar = document.getElementById('progress-bar');
 
-// 2. THE EVENT LISTENER
+// 2. TRACK THE PROGRESS
+let currentIndex = 0; 
+let totalHadiths = quotes.length;
+
+// Initial setup to show "1 of 31" and start the bar
+updateUI();
+
+// 3. THE EVENT LISTENER
 btn.addEventListener('click', () => {
+    // Move to the next Hadith
+    currentIndex++;
 
-    // Pick a random quote
-    let randomIndex = Math.floor(Math.random() * quotes.length);
-    let r = quotes[randomIndex];
+    // If we reach the end, go back to the start (optional)
+    if (currentIndex >= totalHadiths) {
+        currentIndex = 0;
+    }
 
-    // 3. UPDATE THE HTML CONTENT
-    // This puts the text into your blockquote!
-    qEL.innerText = r; 
-
-    // Optional: Log it to check
-    console.log("New Quote:", r); 
+    updateUI();
 });
+
+// A helper function to update the text and the bar
+function updateUI() {
+    // Show the current Hadith text
+    qEL.innerText = quotes[currentIndex];
+
+    // Update the counter text (we add 1 because index starts at 0)
+    counterEL.innerText = `Hadith: ${currentIndex + 1} of ${totalHadiths}`;
+
+    // Calculate progress percentage
+    // Formula: (current / total) * 100
+    let progressPercent = ((currentIndex + 1) / totalHadiths) * 100;
+    progressBar.style.width = progressPercent + "%";
+}

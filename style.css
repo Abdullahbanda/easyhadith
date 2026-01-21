@@ -152,3 +152,82 @@ button:hover {
         margin-right: auto;
     }
 }
+
+/* Container for the text and the bar */
+.progress-wrapper {
+    margin: 30px 0; /* Space above and below the progress section */
+    text-align: center;
+}
+
+#counter {
+    font-size: 13px;
+    font-family: 'Segoe UI', sans-serif;
+    color: #94a3b8; /* Muted slate color */
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+}
+
+.progress-container {
+    width: 100%;
+    max-width: 300px; /* Limits the bar width so it looks elegant */
+    height: 6px;
+    background-color: #f1f5f9; /* Very light grey */
+    border-radius: 10px;
+    margin: 0 auto; /* Centers the bar horizontally */
+    overflow: hidden;
+}
+
+#progress-bar {
+    width: 0%; 
+    height: 100%;
+    background: linear-gradient(to right, #0ea5e9, #6366f1); /* Pretty gradient blue */
+    border-radius: 10px;
+    transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1); /* Makes the bar slide smoothly */
+}
+/* --- RESPONSIVE PROGRESS SECTION --- */
+
+/* 1. Desktop & Large Screens (Default styles already handle this, but we can refine) */
+@media (min-width: 1024px) {
+    .progress-container {
+        max-width: 400px; /* Slightly longer bar for big screens */
+        height: 8px;      /* Slightly thicker for visibility */
+    }
+}
+
+/* 2. Tablets (iPad, etc.) */
+@media (max-width: 1024px) {
+    .box {
+        padding: 50px 40px;
+    }
+    .progress-container {
+        max-width: 80%; /* Uses more of the card's width */
+    }
+}
+
+/* 3. Mobile Phones (iPhone, Android) */
+@media (max-width: 768px) {
+    .progress-wrapper {
+        margin: 20px 0; /* Less margin to save vertical space */
+    }
+
+    .progress-container {
+        max-width: 90%; /* Almost full width of the card */
+        height: 5px;    /* Thinner bar looks more elegant on small screens */
+    }
+
+    #counter {
+        font-size: 11px; /* Smaller text so it stays on one line */
+        margin-bottom: 5px;
+    }
+
+    /* Adjust the main box padding so it doesn't feel cramped */
+    .box {
+        padding: 30px 20px;
+    }
+
+    blockquote {
+        font-size: 18px; /* Slightly smaller text for mobile reading */
+        line-height: 1.5;
+    }
+}

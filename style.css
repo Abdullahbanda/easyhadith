@@ -160,12 +160,12 @@ button:hover {
 }
 
 #counter {
-    font-size: 13px;
+    font-size: 12px;
     font-family: 'Segoe UI', sans-serif;
-    color: #94a3b8; /* Muted slate color */
-    letter-spacing: 1px;
+    color: #383a3d; /* Muted slate color */
     text-transform: uppercase;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
+    padding-bottom: 5px;
 }
 
 .progress-container {

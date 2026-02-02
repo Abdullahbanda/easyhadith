@@ -53,42 +53,73 @@ let quotes = [
 
 ];
 
-// 1. SELECT THE ELEMENTS
-let qEL = document.getElementById('quote');
-let btn = document.getElementById('id');
-let counterEL = document.getElementById('counter');
-let progressBar = document.getElementById('progress-bar');
 
-// 2. TRACK THE PROGRESS
-let currentIndex = 0; 
-let totalHadiths = quotes.length;
 
-// Initial setup to show "1 of 31" and start the bar
-updateUI();
+// ... keep your 'quotes' array as it is ...
 
-// 3. THE EVENT LISTENER
-btn.addEventListener('click', () => {
-    // Move to the next Hadith
-    currentIndex++;
+let currentIndex = 0;
+const qEL = document.getElementById('quote');
+const btn = document.getElementById('id');
+const counterEL = document.getElementById('counter');
+const progressBar = document.getElementById('progress-bar');
 
-    // If we reach the end, go back to the start (optional)
-    if (currentIndex >= totalHadiths) {
-        currentIndex = 0;
+// New Elements
+const sidebar = document.getElementById('sidebar');
+const menuBtn = document.getElementById('menu-btn');
+const closeBtn = document.getElementById('close-sidebar');
+const hadithList = document.getElementById('hadith-list');
+const bookmarkBtn = document.getElementById('bookmark-btn');
+
+// Load Bookmarks from LocalStorage
+let bookmarks = JSON.parse(localStorage.getItem('hadithBookmarks')) || [];
+
+// 1. Populate the List
+function generateList() {
+    hadithList.innerHTML = '';
+    quotes.forEach((text, index) => {
+        const li = document.createElement('li');
+        li.innerText = `${index + 1}. ${text.substring(0, 30)}...`;
+        if (bookmarks.includes(index)) li.classList.add('bookmarked');
+        
+        li.addEventListener('click', () => {
+            currentIndex = index;
+            updateUI();
+            sidebar.classList.remove('active');
+        });
+        hadithList.appendChild(li);
+    });
+}
+
+// 2. Bookmark Logic
+bookmarkBtn.addEventListener('click', () => {
+    if (!bookmarks.includes(currentIndex)) {
+        bookmarks.push(currentIndex);
+    } else {
+        bookmarks = bookmarks.filter(item => item !== currentIndex);
     }
+    localStorage.setItem('hadithBookmarks', JSON.stringify(bookmarks));
+    generateList(); // Refresh list to show bookmark icon
+    alert(bookmarks.includes(currentIndex) ? "Bookmarked!" : "Bookmark Removed");
+});
 
+// 3. Sidebar Toggles
+menuBtn.addEventListener('click', () => {
+    generateList();
+    sidebar.classList.add('active');
+});
+closeBtn.addEventListener('click', () => sidebar.classList.remove('active'));
+
+// 4. Navigation
+btn.addEventListener('click', () => {
+    currentIndex = (currentIndex + 1) % quotes.length;
     updateUI();
 });
 
-// A helper function to update the text and the bar
 function updateUI() {
-    // Show the current Hadith text
     qEL.innerText = quotes[currentIndex];
-
-    // Update the counter text (we add 1 because index starts at 0)
-    counterEL.innerText = `Hadith: ${currentIndex + 1} of ${totalHadiths}`;
-
-    // Calculate progress percentage
-    // Formula: (current / total) * 100
-    let progressPercent = ((currentIndex + 1) / totalHadiths) * 100;
+    counterEL.innerText = `Hadith: ${currentIndex + 1} of ${quotes.length}`;
+    let progressPercent = ((currentIndex + 1) / quotes.length) * 100;
     progressBar.style.width = progressPercent + "%";
 }
+
+updateUI();

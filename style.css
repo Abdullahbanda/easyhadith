@@ -1,73 +1,79 @@
-/* 1. The Global Reset */
+/* 1. Global Reset */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* 2. The Body (The Atmosphere) */
+/* 2. Body Atmosphere */
 body {
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    /* Soft "Parchment" color - very easy on the eyes */
     background-color: #92928f; 
     font-family: 'Georgia', serif;
     color: #2c3e50;
+    padding: 15px; /* Padding for mobile edges */
 }
 
-/* 3. The Main Box (The "Card") */
+/* 3. The Main Card */
 .box {
     background-color: #ffffff;
-    padding: 80px 60px;
-    border-radius: 4px; /* Slightly sharp corners for a formal look */
+    padding: 40px 25px; /* Default mobile padding */
+    border-radius: 4px;
     max-width: 650px;
-    width: 90%;
+    width: 100%;
     text-align: center;
-    
-    /* Elegant, soft layered shadow */
-    box-shadow: 
-        0 1px 3px rgba(0,0,0,0.05),
-        0 10px 40px rgba(0,0,0,0.03);
-    
-    /* Subtle border like a book cover */
+    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
     border: 1px solid #f1f1f1;
-}
-
-/* 4. The Heading (The Title) */
-h1 {
-    font-family: 'Playfair Display', 'Times New Roman', serif;
-    font-size: 25px;
-    font-weight: 700;
-    text-transform: uppercase;
-    color: #2a2b2c; /* Muted color so the focus remains on the Hadith */
-    margin-bottom: 40px;
-}
-
-/* 5. The Blockquote (The Focus) */
-blockquote {
-    font-size: 26px;
-    line-height: 1.8; /* Extra space between lines for reading comfort */
-    color: #1a1a1a;
-    font-style: italic;
-    margin-bottom: 50px;
     position: relative;
 }
 
-/* Decorative Gold Divider */
+/* 4. Top Navigation (List & Bookmark) */
+.top-controls {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.top-controls button {
+    padding: 8px 15px;
+    font-size: 11px;
+    background-color: #f8fafc;
+    letter-spacing: 1px;
+}
+
+/* 5. Content Styling */
+h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+    color: #2a2b2c;
+}
+
+blockquote {
+    font-size: 20px; /* Mobile base font */
+    line-height: 1.6;
+    color: #1a1a1a;
+    font-style: italic;
+    margin-bottom: 40px;
+    min-height: 120px; /* Prevents button jumping */
+}
+
 blockquote::after {
     content: "";
     display: block;
     width: 50px;
     height: 2px;
-    background-color: #d4af37; /* Metallic Gold */
-    margin: 30px auto 0;
+    background-color: #d4af37;
+    margin: 20px auto 0;
 }
 
-/* 6. The Button (The Navigation) */
+/* 6. General Button Styling */
 button {
-    background-color:#94a3b8;
+    background-color: #94a3b8;
     border: 1px solid #2c3e50;
     color: #2c3e50;
     padding: 12px 30px;
@@ -76,158 +82,111 @@ button {
     text-transform: uppercase;
     letter-spacing: 2px;
     cursor: pointer;
-    transition: all 0.4s ease;
+    transition: all 0.3s ease;
     border-radius: 2px;
 }
 
-/* Hover effect: Simple and sophisticated invert */
 button:hover {
     background-color: #2c3e50;
     color: #ffffff;
 }
 
-/* --- RESPONSIVE ADJUSTMENTS --- */
-
-/* 1. Large Desktops (Screens wider than 1200px) */
-@media (min-width: 1200px) {
-    .box {
-        max-width: 800px; /* Wider for very large monitors */
-        padding: 100px;   /* More "breathing room" */
-    }
-    blockquote {
-        font-size: 32px;  /* Larger text for high-res screens */
-    }
-}
-
-/* 2. Tablets (Screens between 768px and 1024px) */
-@media (max-width: 1024px) {
-    .box {
-        max-width: 90%;
-        padding: 60px 40px;
-    }
-    blockquote {
-        font-size: 24px;
-    }
-    h1 {
-        font-size: 12px;
-        letter-spacing: 3px;
-    }
-}
-
-/* 3. Mobile Phones (Screens smaller than 768px) */
-@media (max-width: 768px) {
-    body {
-        padding: 20px; /* Prevents the box from touching the screen edges */
-    }
-    .box {
-        padding: 40px 20px; /* Much smaller padding so text has room */
-        width: 100%;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); /* Lighter shadow for mobile */
-    }
-    h1 {
-        font-size: 11px;
-        margin-bottom: 20px;
-    }
-    blockquote {
-        font-size: 20px; /* Smaller font so it doesn't require too much scrolling */
-        line-height: 1.6;
-    }
-    button {
-        width: 100%; /* Full width button is easier to tap with a thumb */
-        padding: 15px;
-    }
-}
-
-@media (max-width: 768px) {
-    button {
-        /* This makes the button shrink back to fit the text */
-        width: auto; 
-        display: inline-block;
-        
-        /* Add more horizontal padding to make it look balanced */
-        padding: 12px 40px; 
-        
-        /* Ensure it stays centered if the parent has text-align: center */
-        margin-left: auto;
-        margin-right: auto;
-    }
-}
-
-/* Container for the text and the bar */
+/* 7. Progress Section */
 .progress-wrapper {
-    margin: 30px 0; /* Space above and below the progress section */
-    text-align: center;
+    margin: 25px 0;
 }
 
 #counter {
-    font-size: 12px;
-    font-family: 'Segoe UI', sans-serif;
-    color: #383a3d; /* Muted slate color */
+    font-size: 11px;
+    font-family: sans-serif;
     text-transform: uppercase;
     margin-bottom: 10px;
-    padding-bottom: 5px;
 }
 
 .progress-container {
     width: 100%;
-    max-width: 300px; /* Limits the bar width so it looks elegant */
+    max-width: 300px;
     height: 6px;
-    background-color: #f1f5f9; /* Very light grey */
+    background-color: #f1f5f9;
     border-radius: 10px;
-    margin: 0 auto; /* Centers the bar horizontally */
+    margin: 0 auto;
     overflow: hidden;
 }
 
 #progress-bar {
     width: 0%; 
     height: 100%;
-    background: linear-gradient(to right, #0ea5e9, #6366f1); /* Pretty gradient blue */
-    border-radius: 10px;
-    transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1); /* Makes the bar slide smoothly */
-}
-/* --- RESPONSIVE PROGRESS SECTION --- */
-
-/* 1. Desktop & Large Screens (Default styles already handle this, but we can refine) */
-@media (min-width: 1024px) {
-    .progress-container {
-        max-width: 400px; /* Slightly longer bar for big screens */
-        height: 8px;      /* Slightly thicker for visibility */
-    }
+    background: linear-gradient(to right, #0ea5e9, #6366f1);
+    transition: width 0.5s ease;
 }
 
-/* 2. Tablets (iPad, etc.) */
-@media (max-width: 1024px) {
+/* 8. Sidebar Navigation */
+.sidebar {
+    position: fixed;
+    left: -100%; /* Hidden off-screen */
+    top: 0;
+    width: 85%; /* Mobile width */
+    max-width: 320px;
+    height: 100%;
+    background: #ffffff;
+    box-shadow: 2px 0 15px rgba(0,0,0,0.2);
+    transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1000;
+    overflow-y: auto;
+    padding: 20px;
+}
+
+.sidebar.active {
+    left: 0;
+}
+
+.sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+}
+
+#hadith-list li {
+    padding: 12px 10px;
+    border-bottom: 1px solid #f9f9f9;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+#hadith-list li:hover {
+    background-color: #f1f5f9;
+}
+
+/* --- MEDIA QUERIES --- */
+
+/* Tablet & Desktop (768px+) */
+@media (min-width: 768px) {
     .box {
-        padding: 50px 40px;
+        padding: 60px 50px;
+        width: 90%;
     }
-    .progress-container {
-        max-width: 80%; /* Uses more of the card's width */
-    }
-}
-
-/* 3. Mobile Phones (iPhone, Android) */
-@media (max-width: 768px) {
-    .progress-wrapper {
-        margin: 20px 0; /* Less margin to save vertical space */
-    }
-
-    .progress-container {
-        max-width: 90%; /* Almost full width of the card */
-        height: 5px;    /* Thinner bar looks more elegant on small screens */
-    }
-
-    #counter {
-        font-size: 11px; /* Smaller text so it stays on one line */
-        margin-bottom: 5px;
-    }
-
-    /* Adjust the main box padding so it doesn't feel cramped */
-    .box {
-        padding: 30px 20px;
-    }
-
+    
+    h1 { font-size: 24px; }
+    
     blockquote {
-        font-size: 18px; /* Slightly smaller text for mobile reading */
-        line-height: 1.5;
+        font-size: 26px;
+        line-height: 1.8;
     }
+
+    .sidebar {
+        width: 320px;
+    }
+}
+
+/* Large Desktop (1200px+) */
+@media (min-width: 1200px) {
+    .box {
+        max-width: 800px;
+        padding: 80px 100px;
+    }
+    
+    blockquote { font-size: 30px; }
 }

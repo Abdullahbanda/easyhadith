@@ -7,13 +7,19 @@
     <title>Learning Hadith</title>
 </head>
 <body>
-    <div class="box">
+    
+<div class="box">
+    <div class="top-controls">
+        <button id="menu-btn">☰ List</button>
+        <button id="bookmark-btn">🔖 Bookmark</button>
+    </div>
+    
     <h1>Read Hadith</h1>
     
     <blockquote id="quote">Click the button to start reading</blockquote>
 
     <div class="progress-wrapper">
-        <p id="counter">Hadith 1 of 31</p>
+        <p id="counter">Hadith 1 of 50</p>
         <div class="progress-container">
             <div id="progress-bar"></div>
         </div>
@@ -21,6 +27,13 @@
     <button id="id">Next</button>
 </div>
 
+<div id="sidebar" class="sidebar">
+    <div class="sidebar-header">
+        <h3>Jump to Hadith</h3>
+        <button id="close-sidebar">&times;</button>
+    </div>
+    <ul id="hadith-list"></ul>
+</div>
     <script src="script.js"></script>
 </body>
 </html>

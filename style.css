@@ -183,7 +183,7 @@ button:hover {
 /* THIS PART FIXES THE BOOKMARK ICON NOT SHOWING */
 #hadith-list li.bookmarked::after {
     content: '🔖';
-    font-size: 16px;
+    font-size: 16px; }
 /* Large Desktop (1200px+) */
 @media (min-width: 1200px) {
     .box {
